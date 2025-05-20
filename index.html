@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Top 3 Discounts by Category | IaSmarKet.us</title>
+    <title>-90% OFF IaSmarKet.us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -373,6 +373,21 @@
             header { flex-direction: column; align-items: flex-start; }
             .header-content { margin-left: 0; }
         }
+
+        /* Ajout affichage (display label) style */
+        .affichage-label {
+            background: #27e3c2;
+            color: #12121a;
+            font-size: 1.03em;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 8px;
+            margin: 8px auto 18px auto;
+            display: inline-block;
+            box-shadow: 0 1px 8px #27e3c245;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 3px #fff7;
+        }
     </style>
 </head>
 <body>
@@ -523,6 +538,8 @@
         const progressBar = document.getElementById('progress-bar');
         progressContainer.style.display = 'block';
         let html = '';
+        // Ajout affichage: label d'affichage en haut
+     
         for (let i = 0; i < repositories.length; i++) {
             const repo = repositories[i];
             const products = await fetchAndParseProducts(repo);
