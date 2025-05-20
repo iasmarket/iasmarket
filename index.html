@@ -540,7 +540,7 @@
         progressContainer.style.display = 'block';
         let html = '';
         // Ajout affichage: label d'affichage en haut
-        html += `<div class="affichage-label">Affichage : Top 10 produits par catégorie</div>`;
+        
         for (let i = 0; i < repositories.length; i++) {
             const repo = repositories[i];
             const products = await fetchAndParseProducts(repo);
