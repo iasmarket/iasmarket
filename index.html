@@ -5,16 +5,17 @@
     <title>Top 3 Discounts by Category | IaSmarKet.us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', 'Arial', sans-serif;
             background: #131421;
+            box-sizing: border-box;
         }
         header {
             background: linear-gradient(120deg, #ff316a 0%, #27e3c2 100%);
             color: #fff;
-            padding: 48px 0 38px 0;
+            padding: 32px 0 26px 0;
             text-align: center;
             box-shadow: 0 2px 24px #0007;
             position: relative;
@@ -31,49 +32,44 @@
         }
         .logo {
             margin-left: 20px;
-            width: 90px;
+            width: 70px;
             height: auto;
             position: static;
         }
         .header-content {
-            margin-left: 32px;
+            margin-left: 22px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
         .logo-title {
-            font-size: 2.8em;
+            font-size: 2.2em;
             font-weight: 900;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             text-shadow: 0 4px 18px #0007, 0 1px 0 #fff5;
             filter: drop-shadow(0 6px 16px #ff316a65);
             text-align: left;
         }
         .subtitle {
-            font-size: 1.3em;
+            font-size: 1.08em;
             font-weight: 500;
-            margin-top: 11px;
+            margin-top: 8px;
             color: #fffde7;
             text-shadow: 0 2px 6px #0008;
-            animation: popin 1.1s cubic-bezier(.68,-0.55,.27,1.55);
             text-align: left;
-        }
-        @keyframes popin {
-            0% { opacity: 0; transform: translateY(-16px) scale(0.8);}
-            100% { opacity: 1; transform: translateY(0) scale(1);}
         }
         h1 {
             text-align: center;
             color: #ff316a;
-            font-size: 2.1em;
-            margin-top: 38px;
+            font-size: 1.4em;
+            margin-top: 30px;
             letter-spacing: 1px;
             text-shadow: 0 2px 10px #0006;
         }
         main {
             min-height: 100vh;
-            padding-bottom: 40px;
+            padding-bottom: 24px;
             background: 
                 linear-gradient(120deg, #181c22cc 40%, #1b2231dd 100%),
                 url('bgrnd.png');
@@ -83,35 +79,34 @@
         }
         /* Sidebar menu styles */
         .sidebar {
-            width: 265px;
-            min-width: 210px;
+            width: 220px;
+            min-width: 140px;
             background: linear-gradient(135deg, #181c22 75%, #1b2231 100%);
-            border-top-right-radius: 30px;
-            border-bottom-right-radius: 30px;
+            border-top-right-radius: 23px;
+            border-bottom-right-radius: 23px;
             box-shadow: 2px 0 18px #0007;
-            padding: 36px 0 36px 0;
+            padding: 22px 0 18px 0;
             display: flex;
             flex-direction: column;
             align-items: stretch;
             position: sticky;
             top: 0;
             height: 90vh;
-            margin: 35px 0 35px 0;
+            margin: 18px 0 18px 0;
             z-index: 2;
         }
         .sidebar-title {
-            font-size: 1.25em;
+            font-size: 1.1em;
             color: #fff;
             font-weight: 700;
             letter-spacing: 1px;
-            padding: 0 26px 18px 38px;
+            padding: 0 16px 12px 20px;
             margin-bottom: 0;
             border-bottom: 1.5px solid #25273955;
             text-shadow: 0 2px 9px #27e3c288;
         }
-        /* Group (accordion) styles */
         .group {
-            padding: 8px 12px;
+            padding: 5px 7px;
             border-bottom: 1px solid rgba(255,255,255,0.03);
         }
         .group-header {
@@ -122,8 +117,8 @@
             background: transparent;
             border: none;
             color: #eaeaea;
-            padding: 12px 26px 12px 38px;
-            font-size: 1.02em;
+            padding: 9px 16px 9px 20px;
+            font-size: 1em;
             font-weight: 700;
             cursor: pointer;
             text-align: left;
@@ -145,7 +140,7 @@
         }
         .group-list {
             list-style: none;
-            padding: 6px 12px 12px 12px;
+            padding: 3px 8px 8px 8px;
             margin: 0;
             max-height: 0;
             overflow: hidden;
@@ -155,14 +150,14 @@
             /* max-height set dynamically from JS */
         }
         .category-item {
-            margin: 6px 0;
+            margin: 3px 0;
         }
         .category-link {
             display: block;
-            padding: 9px 18px;
+            padding: 7px 13px;
             color: #eaeaea;
             text-decoration: none;
-            font-size: 1.01em;
+            font-size: 1em;
             border-left: 4px solid transparent;
             transition: 
                 background 0.16s, 
@@ -190,46 +185,53 @@
         .main-content-inner {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 14px;
         }
+        /* --- CIEL BLEU pour chaque section catégorie --- */
         .repo-section {
-            margin: 56px auto 0 auto;
+            margin: 30px auto 0 auto;
             max-width: 1200px;
-            padding: 0 24px 36px 24px;
+            padding: 0 8px 26px 8px;
             border-bottom: 2px solid #25273955;
+            background: linear-gradient(120deg, #d7eaff 60%, #bee8fa 100%),
+                        url('https://www.transparenttextures.com/patterns/clouds.png');
+            background-repeat: repeat;
+            border-radius: 16px;
+            box-shadow: 0 8px 36px #a7d2ee66, 0 2px 12px #fff8;
+            border: 1.5px solid #b7d2ee;
+            margin-bottom: 24px;
         }
         .repo-title {
-            font-size: 2em;
+            font-size: 1.25em;
             font-weight: 700;
-            color: #f4fcfb;
+            color: #1d3b6d;
             text-align: center;
             display: block;
-            margin-bottom: 28px;
+            margin: 18px 0 18px 0;
             text-decoration: none;
             transition: color 0.2s, text-shadow 0.2s;
             letter-spacing: 1px;
-            text-shadow: 0 1px 8px #ff316a44;
+            text-shadow: 0 2px 12px #fff9, 0 1px 0 #d7eaff99;
         }
         .repo-title:hover {
             color: #ff316a;
             text-shadow: 0 1px 16px #ff316ad0;
         }
-        /* Responsive, variable number of products per row */
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
             justify-content: center;
             align-items: stretch;
         }
         .product {
             background: linear-gradient(135deg, #232538ef 70%, #1a1c23f7 100%);
             border: 1.5px solid #252739;
-            border-radius: 18px;
-            width: 330px;
-            max-width: 97vw;
-            padding: 22px 15px 20px 15px;
-            margin: 10px 0;
+            border-radius: 14px;
+            width: 97%;
+            max-width: 98vw;
+            padding: 13px 8px 14px 8px;
+            margin: 7px 0;
             text-align: center;
             box-shadow: 0 4px 32px #0007, 0 1.5px 8px #ff316a15;
             transition: transform 0.22s, box-shadow 0.22s;
@@ -243,9 +245,9 @@
         }
         .product img {
             width: 100%;
-            height: 205px;
+            height: 170px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 9px;
             box-shadow: 0 2px 12px #ff316a22;
             transition: filter 0.2s;
             background: #fff;
@@ -254,11 +256,11 @@
         .discount {
             background: linear-gradient(90deg, #ff316a, #ffb156 85%);
             color: #fff;
-            font-size: 1.2em;
+            font-size: 1em;
             font-weight: bold;
-            border-radius: 0 0 12px 12px;
-            padding: 6px 0 5px 0;
-            margin: 16px 0 7px 0;
+            border-radius: 0 0 9px 9px;
+            padding: 5px 0 5px 0;
+            margin: 10px 0 4px 0;
             box-shadow: 0 2px 8px #ff316a24;
             letter-spacing: 2px;
             width: 80%;
@@ -267,35 +269,35 @@
             text-shadow: 0 1px 3px #0006;
         }
         .name {
-            margin: 10px 0 8px 0;
-            font-size: 1.08em;
+            margin: 7px 0 6px 0;
+            font-size: 1em;
             font-weight: 500;
             color: #f8f8f8;
-            min-height: 48px;
+            min-height: 38px;
             line-height: 1.2;
             text-shadow: 0 1px 3px #18181a60;
         }
         .description {
             color: #c8e6fa;
-            font-size: 0.97em;
-            margin: 8px 0 8px 0;
-            padding: 0 4px;
-            min-height: 38px;
+            font-size: 0.96em;
+            margin: 4px 0 6px 0;
+            padding: 0 2px;
+            min-height: 25px;
             text-shadow: 0 1px 3px #0005;
         }
         .price {
             color: #ffb156;
-            font-size: 1.16em;
+            font-size: 1.03em;
             font-weight: 600;
-            margin: 6px 0 8px 0;
+            margin: 3px 0 6px 0;
             text-shadow: 0 1px 3px #0008;
         }
         .product a {
             color: #27e3c2;
             font-weight: bold;
-            font-size: 1.04em;
+            font-size: 1em;
             text-decoration: none;
-            margin-top: 9px;
+            margin-top: 5px;
             display: inline-block;
             transition: color 0.2s;
         }
@@ -306,14 +308,13 @@
         .loading {
             color: #aaa;
             text-align: center;
-            margin: 60px 0 0 0;
-            font-size: 1.3em;
+            margin: 40px 0 0 0;
+            font-size: 1.15em;
         }
-        /* Progress bar styles */
         #progress-container {
             width: 100%;
             max-width: 400px;
-            margin: 30px auto 0 auto;
+            margin: 24px auto 0 auto;
             display: none;
             background: #232538;
             border-radius: 8px;
@@ -321,23 +322,22 @@
             box-shadow: 0 1px 8px #0004;
         }
         #progress-bar {
-            height: 12px;
+            height: 10px;
             background: linear-gradient(90deg,#ff316a,#27e3c2);
             width: 0%;
             border-radius: 8px;
             transition: width 0.3s;
         }
-        /* Right Ribbon (Ruban à droite) */
         .right-ribbon {
             position: fixed;
-            top: 68px;
-            right: -68px;
+            top: 48px;
+            right: -62px;
             z-index: 1000;
             background: linear-gradient(90deg, #ff316a, #27e3c2);
             color: #fff;
             font-weight: bold;
-            font-size: 1.18em;
-            padding: 16px 54px 16px 24px;
+            font-size: 1em;
+            padding: 10px 38px 10px 16px;
             border-radius: 14px 0 0 14px;
             box-shadow: 0 6px 22px #0006, 0 1.5px 8px #ff316a35;
             transform: rotate(28deg);
@@ -365,24 +365,23 @@
                 height: auto;
                 width: 100%;
                 min-width: 0;
-                border-radius: 0 0 30px 30px;
-                margin: 0 0 22px 0;
+                border-radius: 0 0 26px 26px;
+                margin: 0 0 16px 0;
                 flex-direction: row;
                 overflow-x: auto;
                 box-shadow: 0 8px 18px #0007;
-                padding: 18px 0 14px 0;
+                padding: 8px 0 6px 0;
             }
             .sidebar-title {
                 display: none;
             }
-            /* In narrow mode, show categories in a row (collapse accordion) */
             .group {
                 min-width: auto;
-                padding: 8px 10px;
+                padding: 3px 6px;
             }
             .group-header {
-                padding: 8px 16px;
-                border-radius: 12px;
+                padding: 8px 10px;
+                border-radius: 8px;
             }
             .group-list {
                 display: none !important;
@@ -394,19 +393,24 @@
                 position: static;
             }
         }
-        @media (max-width: 750px) {
-            .products { gap: 18px; }
-            .repo-section { padding: 0 2vw 36px 2vw; }
-            .main-content-inner { padding: 0 2vw; }
-            .sidebar { padding: 10px 0 10px 0; }
-        }
         @media (max-width: 650px) {
-            .products { gap: 18px; }
-            .product { width: 97vw; max-width: 100vw;}
-            .repo-title { font-size: 1.3em; }
-            #progress-container { max-width: 98vw; }
-            header { flex-direction: column; align-items: flex-start; }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 19px 0 14px 0;
+            }
             .header-content { margin-left: 0; }
+            .logo { margin-left: 10px; width: 55px;}
+            .logo-title { font-size: 1.3em; }
+            .subtitle { font-size: 0.96em; }
+            .main-content-inner { padding: 0 2vw; }
+            h1 { font-size: 1em; }
+            .products { gap: 8px; grid-template-columns: 1fr; }
+            .product { width: 99vw; max-width: 100vw;}
+            .repo-section { padding: 0 2vw 16px 2vw; }
+            #progress-container { max-width: 98vw; }
+            .sidebar { padding: 2px 0 2px 0; }
+            .repo-title { font-size: 1em; }
         }
         /* Ajout affichage (display label) style */
         .affichage-label {
@@ -456,61 +460,58 @@
         💎 FB Extra Deals!
     </div>
     <script>
-    // List of category repositories
-      const repositories = [
-  { name: " 🏠 Maison, Jardin & Bricolage", url: " " },
-  { name: " Appliances ", url: "https://iasmarket.github.io/Appliances/" },
-  { name: " Home And Kitchen ", url: "https://iasmarket.github.io/HomeAndKitchen/" },
-  { name: " Tools ", url: "https://iasmarket.github.io/Tools/" },
-  { name: " Tools And Home Improvement ", url: "https://iasmarket.github.io/ToolsAndHomeImprovement/" },
-  { name: " Garden And Outdoor ", url: "https://iasmarket.github.io/GardenAndOutdoor/" },
-  { name: " Lawn And Garden ", url: "https://iasmarket.github.io/LawnAndGarden/" },
-
-  { name: " 💻 Électronique, Informatique & Logiciels", url: " " },
-  { name: " Electronics ", url: "https://iasmarket.github.io/Electronics/" },
-  { name: " Computers ", url: "https://iasmarket.github.io/Computers/" },
-  { name: " Software ", url: "https://iasmarket.github.io/Software/" },
-  { name: " Wireless ", url: "https://iasmarket.github.io/Wireless/" },
-  { name: " Wireless Accessories ", url: "https://iasmarket.github.io/WirelessAccessories/" },
-  { name: " CellPhones Accessories ", url: "https://iasmarket.github.io/CellPhonesAccessories/" },
-  { name: " MobileApps ", url: "https://iasmarket.github.io/MobileApps/" },
-
-  { name: " 👕 Mode, Bijoux & Accessoires", url: " " },
-  { name: " Fashion Men ", url: "https://iasmarket.github.io/FashionMen/" },
-  { name: " FashionBoys ", url: "https://iasmarket.github.io/FashionBoys/" },
-  { name: " FashionBaby ", url: "https://iasmarket.github.io/FashionBaby/" },
-  { name: " Clothing And Accessories ", url: "https://iasmarket.github.io/ClothingAndAccessories/" },
-  { name: " Jewelry ", url: "https://iasmarket.github.io/Jewelry/" },
-  { name: " Luggage ", url: "https://iasmarket.github.io/Luggage/" },
-
-  { name: " 🧴 Beauté, Santé & Bébé", url: " " },
-  { name: " Beauty", url: "https://iasmarket.github.io/Beauty/" },
-  { name: " Health Personal Care ", url: "https://iasmarket.github.io/HealthPersonalCare/" },
-  { name: " Baby ", url: "https://iasmarket.github.io/Baby/" },
-
-  { name: " 🧸 Jouets, Loisirs & Créativité", url: " " },
-  { name: " Toys ", url: "https://iasmarket.github.io/Toys/" },
-  { name: " Toys And Games ", url: "https://iasmarket.github.io/ToysAndGames/" },
-  { name: " Arts And Crafts ", url: "https://iasmarket.github.io/ArtsAndCrafts/" },
-  { name: " Books ", url: "https://iasmarket.github.io/Books/" },
-  { name: " KindleStore ", url: "https://iasmarket.github.io/KindleStore/" },
-  { name: " Video Games ", url: "https://iasmarket.github.io/VideoGames/" },
-
-  { name: " ⚽ Sports, Plein Air & Loisirs", url: " " },
-  { name: " Sporting Goods ", url: "https://iasmarket.github.io/SportingGoods/" },
-  { name: " Sports And Outdoors ", url: "https://iasmarket.github.io/SportsAndOutdoors/" },
-  { name: " Automotive ", url: "https://iasmarket.github.io/Automotive/" },
-  { name: " Industrial ", url: "https://iasmarket.github.io/Industrial/" },
-
-  { name: " 🍔 Alimentation, Animaux & Cadeaux", url: " " },
-  { name: " Grocery And Gourmet Food ", url: "https://iasmarket.github.io/GroceryAndGourmetFood/" },
-  { name: " Pet Supplies & Gourmet Food", url: "https://iasmarket.github.io/PetSupplies/" },
-  { name: " GiftCards ", url: "https://iasmarket.github.io/GiftCards/" },
-
-  { name: " 🧾 Bureau & Divers", url: " " },
-  { name: " Office Products ", url: "https://iasmarket.github.io/OfficeProducts/" },
-  { name: " Miscellaneous ", url: "https://iasmarket.github.io/Miscellaneous/" },
-];
+    // List of category repositories (inchangé)
+    // ... (code JS inchangé ici, voir ta version précédente) ...
+    // (Tu peux coller tout ton JS ici)
+    // --- Début du JS (inchangé) ---
+    const repositories = [
+      // ... (ta liste précédente) ...
+      { name: " 🏠 Maison, Jardin & Bricolage", url: " " },
+      { name: " Appliances ", url: "https://iasmarket.github.io/Appliances/" },
+      { name: " Home And Kitchen ", url: "https://iasmarket.github.io/HomeAndKitchen/" },
+      { name: " Tools ", url: "https://iasmarket.github.io/Tools/" },
+      { name: " Tools And Home Improvement ", url: "https://iasmarket.github.io/ToolsAndHomeImprovement/" },
+      { name: " Garden And Outdoor ", url: "https://iasmarket.github.io/GardenAndOutdoor/" },
+      { name: " Lawn And Garden ", url: "https://iasmarket.github.io/LawnAndGarden/" },
+      { name: " 💻 Électronique, Informatique & Logiciels", url: " " },
+      { name: " Electronics ", url: "https://iasmarket.github.io/Electronics/" },
+      { name: " Computers ", url: "https://iasmarket.github.io/Computers/" },
+      { name: " Software ", url: "https://iasmarket.github.io/Software/" },
+      { name: " Wireless ", url: "https://iasmarket.github.io/Wireless/" },
+      { name: " Wireless Accessories ", url: "https://iasmarket.github.io/WirelessAccessories/" },
+      { name: " CellPhones Accessories ", url: "https://iasmarket.github.io/CellPhonesAccessories/" },
+      { name: " MobileApps ", url: "https://iasmarket.github.io/MobileApps/" },
+      { name: " 👕 Mode, Bijoux & Accessoires", url: " " },
+      { name: " Fashion Men ", url: "https://iasmarket.github.io/FashionMen/" },
+      { name: " FashionBoys ", url: "https://iasmarket.github.io/FashionBoys/" },
+      { name: " FashionBaby ", url: "https://iasmarket.github.io/FashionBaby/" },
+      { name: " Clothing And Accessories ", url: "https://iasmarket.github.io/ClothingAndAccessories/" },
+      { name: " Jewelry ", url: "https://iasmarket.github.io/Jewelry/" },
+      { name: " Luggage ", url: "https://iasmarket.github.io/Luggage/" },
+      { name: " 🧴 Beauté, Santé & Bébé", url: " " },
+      { name: " Beauty", url: "https://iasmarket.github.io/Beauty/" },
+      { name: " Health Personal Care ", url: "https://iasmarket.github.io/HealthPersonalCare/" },
+      { name: " Baby ", url: "https://iasmarket.github.io/Baby/" },
+      { name: " 🧸 Jouets, Loisirs & Créativité", url: " " },
+      { name: " Toys ", url: "https://iasmarket.github.io/Toys/" },
+      { name: " Toys And Games ", url: "https://iasmarket.github.io/ToysAndGames/" },
+      { name: " Arts And Crafts ", url: "https://iasmarket.github.io/ArtsAndCrafts/" },
+      { name: " Books ", url: "https://iasmarket.github.io/Books/" },
+      { name: " KindleStore ", url: "https://iasmarket.github.io/KindleStore/" },
+      { name: " Video Games ", url: "https://iasmarket.github.io/VideoGames/" },
+      { name: " ⚽ Sports, Plein Air & Loisirs", url: " " },
+      { name: " Sporting Goods ", url: "https://iasmarket.github.io/SportingGoods/" },
+      { name: " Sports And Outdoors ", url: "https://iasmarket.github.io/SportsAndOutdoors/" },
+      { name: " Automotive ", url: "https://iasmarket.github.io/Automotive/" },
+      { name: " Industrial ", url: "https://iasmarket.github.io/Industrial/" },
+      { name: " 🍔 Alimentation, Animaux & Cadeaux", url: " " },
+      { name: " Grocery And Gourmet Food ", url: "https://iasmarket.github.io/GroceryAndGourmetFood/" },
+      { name: " Pet Supplies & Gourmet Food", url: "https://iasmarket.github.io/PetSupplies/" },
+      { name: " GiftCards ", url: "https://iasmarket.github.io/GiftCards/" },
+      { name: " 🧾 Bureau & Divers", url: " " },
+      { name: " Office Products ", url: "https://iasmarket.github.io/OfficeProducts/" },
+      { name: " Miscellaneous ", url: "https://iasmarket.github.io/Miscellaneous/" },
+    ];
 
     // Build groups (entries with empty url are group titles)
     const groups = [];
@@ -676,7 +677,7 @@
             const products = await fetchAndParseProducts(repo);
             if (!products.length) continue;
             html += `<div class="repo-section" id="cat-${i}" data-catidx="${i}">
-                <a class="repo-title" href="${repo.url}" target="_blank">${repo.name} Click for more...</a>
+                <a class="repo-title" target="_blank">${repo.name} </a>
                 <div class="products">`;
             products.forEach(product => {
                 html += `<div class="product">
@@ -688,7 +689,9 @@
                     <a href="${product.link}" target="_blank">View product</a>
                 </div>`;
             });
-            html += `</div></div>`;
+            html += `</div>
+                <a class="repo-title" href="${repo.url}" target="_blank">Click for more...${repo.name} products! </a>
+            </div>`;
             // Mise à jour de la barre de progression
             progressBar.style.width = Math.round((i + 1) / repositories.length * 100) + '%';
         }
