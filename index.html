@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Top 3 Discounts by Category | IaSmarKet.us</title>
@@ -109,22 +109,60 @@
             border-bottom: 1.5px solid #25273955;
             text-shadow: 0 2px 9px #27e3c288;
         }
-        .category-list {
+        /* Group (accordion) styles */
+        .group {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .group-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            border: none;
+            color: #eaeaea;
+            padding: 12px 26px 12px 38px;
+            font-size: 1.02em;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 6px;
+            transition: background 0.18s, color 0.18s;
+        }
+        .group-header:hover {
+            background: linear-gradient(90deg,#27e3c220 0%,#ff316a11 100%);
+            color: #ff316a;
+        }
+        .group-header .caret {
+            margin-left: 8px;
+            font-size: 0.98em;
+            opacity: 0.9;
+            transition: transform 0.25s;
+        }
+        .group.open .group-header .caret {
+            transform: rotate(90deg);
+        }
+        .group-list {
             list-style: none;
-            padding: 0;
+            padding: 6px 12px 12px 12px;
             margin: 0;
-            flex: 1;
-            overflow-y: auto;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.28s ease;
+        }
+        .group-list.open {
+            /* max-height set dynamically from JS */
         }
         .category-item {
-            margin: 0;
+            margin: 6px 0;
         }
         .category-link {
             display: block;
-            padding: 13px 36px 13px 38px;
+            padding: 9px 18px;
             color: #eaeaea;
             text-decoration: none;
-            font-size: 1.08em;
+            font-size: 1.01em;
             border-left: 4px solid transparent;
             transition: 
                 background 0.16s, 
@@ -132,7 +170,6 @@
                 border-color 0.18s, 
                 box-shadow 0.18s;
             border-radius: 0 15px 15px 0;
-            margin-bottom: 2px;
             font-weight: 500;
             position: relative;
         }
@@ -338,27 +375,23 @@
             .sidebar-title {
                 display: none;
             }
-            .category-list {
-                display: flex;
-                flex-direction: row;
-                overflow-x: auto;
-                padding: 0 10px;
+            /* In narrow mode, show categories in a row (collapse accordion) */
+            .group {
+                min-width: auto;
+                padding: 8px 10px;
             }
-            .category-item {
-                margin: 0 6px 0 0;
-            }
-            .category-link {
+            .group-header {
+                padding: 8px 16px;
                 border-radius: 12px;
-                border-left: none;
-                border-bottom: 4px solid transparent;
-                padding: 9px 22px 9px 22px;
-                margin-bottom: 0;
             }
-            .category-link:hover,
-            .category-link.active {
-                border-left: none;
-                border-bottom: 4px solid #ff316a;
-                background: linear-gradient(90deg,#27e3c220 0%,#ff316a11 100%);
+            .group-list {
+                display: none !important;
+                position: static;
+            }
+            .group.open .group-list {
+                display: block !important;
+                max-height: none !important;
+                position: static;
             }
         }
         @media (max-width: 750px) {
@@ -403,9 +436,9 @@
         </div>
     </header>
     <main>
-        <nav class="sidebar" id="sidebar-menu">
+        <nav class="sidebar" id="sidebar-menu" aria-label="Categories">
             <div class="sidebar-title">Categories</div>
-            <ul class="category-list" id="category-list"></ul>
+            <div id="category-list"></div>
         </nav>
         <div class="main-content">
             <div class="main-content-inner">
@@ -479,19 +512,88 @@
   { name: " Miscellaneous ", url: "https://iasmarket.github.io/Miscellaneous/" },
 ];
 
-    // Sidebar menu rendering
-    const categoryList = document.getElementById('category-list');
+    // Build groups (entries with empty url are group titles)
+    const groups = [];
     repositories.forEach((repo, idx) => {
-        const li = document.createElement('li');
-        li.className = 'category-item';
-        const a = document.createElement('a');
-        a.className = 'category-link';
-        a.href = '#cat-' + idx;
-        a.textContent = repo.name;
-        a.dataset.catidx = idx;
-        li.appendChild(a);
-        categoryList.appendChild(li);
+        const isGroupTitle = !(repo.url && repo.url.toString().trim());
+        if (isGroupTitle) {
+            groups.push({ title: repo.name.trim(), children: [] });
+        } else {
+            if (groups.length === 0) groups.push({ title: 'Categories', children: [] });
+            groups[groups.length - 1].children.push({ ...repo, idx });
+        }
     });
+
+    // Render sidebar accordion groups
+    const categoryContainer = document.getElementById('category-list');
+    function setActiveLink(link) {
+        document.querySelectorAll('.category-link').forEach(a => a.classList.remove('active'));
+        if (link) link.classList.add('active');
+    }
+    groups.forEach((group, gi) => {
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'group';
+        const header = document.createElement('button');
+        header.className = 'group-header';
+        header.type = 'button';
+        header.setAttribute('aria-expanded', 'false');
+        header.innerHTML = `<span>${group.title}</span><span class="caret">›</span>`;
+        const list = document.createElement('ul');
+        list.className = 'group-list';
+        list.setAttribute('aria-hidden', 'true');
+
+        group.children.forEach(child => {
+            const li = document.createElement('li');
+            li.className = 'category-item';
+            const a = document.createElement('a');
+            a.className = 'category-link';
+            a.href = '#cat-' + child.idx;
+            a.textContent = child.name.trim();
+            a.dataset.catidx = child.idx;
+            a.dataset.url = child.url;
+            // click behavior: scroll to section if present, otherwise open external URL
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = a.getAttribute('href');
+                const section = document.querySelector(targetId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setActiveLink(a);
+                } else if (a.dataset.url && a.dataset.url.trim()) {
+                    window.open(a.dataset.url, '_blank');
+                }
+            });
+            li.appendChild(a);
+            list.appendChild(li);
+        });
+
+        // Toggle on header click
+        header.addEventListener('click', () => {
+            const isOpen = header.getAttribute('aria-expanded') === 'true';
+            header.setAttribute('aria-expanded', String(!isOpen));
+            if (!isOpen) {
+                list.style.maxHeight = list.scrollHeight + 'px';
+                list.classList.add('open');
+                list.setAttribute('aria-hidden', 'false');
+                groupDiv.classList.add('open');
+            } else {
+                list.style.maxHeight = null;
+                list.classList.remove('open');
+                list.setAttribute('aria-hidden', 'true');
+                groupDiv.classList.remove('open');
+            }
+        });
+
+        groupDiv.appendChild(header);
+        groupDiv.appendChild(list);
+        categoryContainer.appendChild(groupDiv);
+    });
+
+    // Expand first group by default (if any)
+    (function expandFirstGroup() {
+        const firstHeader = document.querySelector('.group .group-header');
+        if (firstHeader) firstHeader.click();
+    })();
 
     // To avoid duplicates (by link or image)
     const seenProducts = new Set();
@@ -518,6 +620,8 @@
     }
 
     async function fetchAndParseProducts(repo) {
+        // Skip group headers or empty URLs
+        if (!repo.url || !repo.url.toString().trim()) return [];
         try {
             const res = await fetch(repo.url);
             const html = await res.text();
@@ -543,7 +647,7 @@
             })
             .filter(p => p.discount > 0 && (p.link || p.image));
             productObjs.sort((a, b) => b.discount - a.discount);
-            // Take the first 3 unique products (no duplicate image or link)
+            // Take the first 10 unique products (no duplicate image or link)
             const unique = [];
             for (let prod of productObjs) {
                 const key = (prod.link || '') + '|' + (prod.image || '');
@@ -566,12 +670,12 @@
         progressContainer.style.display = 'block';
         let html = '';
         // Ajout affichage: label d'affichage en haut
-        
+
         for (let i = 0; i < repositories.length; i++) {
             const repo = repositories[i];
             const products = await fetchAndParseProducts(repo);
             if (!products.length) continue;
-            html += `<div class="repo-section" id="cat-${i}">
+            html += `<div class="repo-section" id="cat-${i}" data-catidx="${i}">
                 <a class="repo-title" href="${repo.url}" target="_blank">${repo.name} Click for more...</a>
                 <div class="products">`;
             products.forEach(product => {
@@ -597,28 +701,45 @@
     function setupSidebarScrollHighlight() {
         const sectionEls = Array.from(document.querySelectorAll('.repo-section'));
         const linkEls = Array.from(document.querySelectorAll('.category-link'));
+
+        function findLinkForIndex(idx) {
+            return document.querySelector(`.category-link[data-catidx="${idx}"]`);
+        }
+
         function onScroll() {
-            let idxToActivate = 0;
+            let idxToActivate = null;
             for (let i = 0; i < sectionEls.length; i++) {
                 const rect = sectionEls[i].getBoundingClientRect();
-                if (rect.top < 120) {
-                    idxToActivate = i;
+                if (rect.top < 140) {
+                    const dataIdx = sectionEls[i].dataset.catidx;
+                    idxToActivate = dataIdx;
                 }
             }
-            linkEls.forEach((a, idx) => {
-                if (idx === idxToActivate) {
-                    a.classList.add('active');
-                } else {
-                    a.classList.remove('active');
+            if (idxToActivate === null && sectionEls.length > 0) {
+                // if nothing passed threshold, maybe the first
+                idxToActivate = sectionEls[0].dataset.catidx;
+            }
+            linkEls.forEach(a => a.classList.remove('active'));
+            if (idxToActivate !== null) {
+                const link = findLinkForIndex(idxToActivate);
+                if (link) {
+                    link.classList.add('active');
+                    // Ensure its group is open so the active link is visible
+                    const groupList = link.closest('.group-list');
+                    if (groupList && groupList.style.maxHeight === '') {
+                        // open the group
+                        const header = groupList.previousElementSibling;
+                        if (header && header.classList.contains('group-header')) header.click();
+                    }
                 }
-            });
+            }
         }
         window.addEventListener('scroll', onScroll, { passive: true });
-        // On click, highlight manually
+
+        // When clicking any link, mark active
         linkEls.forEach(a => {
             a.addEventListener('click', () => {
-                linkEls.forEach(x => x.classList.remove('active'));
-                a.classList.add('active');
+                setActiveLink(a);
             });
         });
     }
