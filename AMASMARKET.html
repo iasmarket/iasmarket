@@ -711,7 +711,7 @@
             products.forEach(product => {
                 html += `<div class="product">
                     <a href="${escapeHTML(product.link)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}"></a>
-                    <div class="discount"> 🔥🔥🔥 </div>
+                     <div class="discount">-${escapeHTML(String(product.discount))}% OFF</div>
                     <div class="name">${escapeHTML(product.name)}</div>
                     <div class="description">${escapeHTML(product.description || '')}</div>
                     <div class="price">${escapeHTML(product.price || '')}</div>
