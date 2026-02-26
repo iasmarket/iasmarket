@@ -945,7 +945,7 @@ async function fetchProducts(repo) {
   // Ex : https://www.iasmarket.us/Appliances/products.json
   // Format : [{ asin, name, image, link, discount, price, coupon }, ...]
   // Avantage : pas de parsing HTML, pas de problème CORS, données déjà triées
-  const jsonUrl = repo.url.replace(/\/?$/, '/') + 'products.json';
+  const jsonUrl = repo.url.replace(/\/+$/, '') + '/products.json';
 
   try {
     const res = await fetch(jsonUrl, { cache: 'no-cache' });
@@ -1180,10 +1180,13 @@ async function subscribeNewsletter() {
     // Google Apps Script nécessite no-cors OU JSONP
     // On utilise le mode no-cors + on considère la soumission comme réussie
     // (Apps Script renvoie toujours 200 même en no-cors)
+    // no-cors requis pour Google Apps Script depuis GitHub Pages
+    // Content-Type doit être text/plain sinon le navigateur envoie un preflight OPTIONS
+    // qui échoue avec no-cors. Apps Script reçoit le body et peut le parser.
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({
         email: email,
         subscribedAt: new Date().toISOString(),
@@ -1192,7 +1195,7 @@ async function subscribeNewsletter() {
     });
 
     // Succès (no-cors ne retourne pas de body, on suppose OK)
-    showFeedback('success', '🎉 You're subscribed! Hot deals coming your way.');
+    showFeedback('success', '🎉 Subscribed! Hot deals coming your way.');
     emailInput.value = '';
     btnText.textContent = '✓ Subscribed!';
     btn.style.background = 'linear-gradient(135deg, #30D158, #00B347)';
