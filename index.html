@@ -938,40 +938,31 @@ function extractName(el, imgEl) {
   return (imgEl && imgEl.alt) ? imgEl.alt : 'Product';
 }
 
-async function fetchProducts(repo) {
-  if (!repo.url || !repo.url.trim()) return [];
+// Données chargées une seule fois depuis /all-products.json (racine du repo)
+// Pas de CORS : même domaine que index.html
+let _allProductsCache = null;
 
-  // ── Lire products.json (généré par form.html à chaque publication) ──────────
-  // Ex : https://www.iasmarket.us/Appliances/products.json
-  // Format : [{ asin, name, image, link, discount, price, coupon }, ...]
-  // Avantage : pas de parsing HTML, pas de problème CORS, données déjà triées
-  const jsonUrl = repo.url.replace(/\/+$/, '') + '/products.json';
-
+async function loadAllProducts() {
+  if (_allProductsCache) return _allProductsCache;
   try {
-    const res = await fetch(jsonUrl, { cache: 'no-cache' });
-    if (!res.ok) return []; // products.json absent → catégorie ignorée
-
-    const products = await res.json();
-
-    if (!Array.isArray(products) || !products.length) return [];
-
-    // Déduplication par ASIN (au cas où)
-    const seen = new Set();
-    const top10 = [];
-    for (const p of products) {
-      if (!p.discount || !p.image) continue;
-      const key = p.asin || p.link;
-      if (key && seen.has(key)) continue;
-      if (key) seen.add(key);
-      top10.push(p);
-      if (top10.length >= 10) break;
-    }
-
-    return top10;
-
+    // Chemin relatif → toujours même domaine, zéro CORS
+    const res = await fetch('/all-products.json', { cache: 'no-cache' });
+    if (!res.ok) return {};
+    _allProductsCache = await res.json();
+    return _allProductsCache;
   } catch(e) {
-    return []; // erreur réseau ou JSON invalide → ignorée
+    return {};
   }
+}
+
+async function fetchProducts(repo) {
+  const all = await loadAllProducts();
+  // Clé = nom de la catégorie ex: "Appliances"
+  const key = repo.name.replace(/[^a-zA-Z0-9]/g, '');
+  // Essayer aussi le nom exact
+  const products = all[repo.name] || all[key] || [];
+  if (!Array.isArray(products) || !products.length) return [];
+  return products.slice(0, 10);
 }
 
 // ✅ REPOS - tous pointent vers www.iasmarket.us via iasmarket/iasmarket
@@ -1137,7 +1128,7 @@ async function loadDeals() {
   // Si aucune catégorie chargée
   if (!firstActiveSet) {
     panelsWrap.innerHTML = `<div class="cat-empty"><div class="ico">🔄</div>
-      <p>Loading deals...</p></div>`;
+      <p>Loading deals... Make sure your category pages are published on iasmarket.us</p></div>`;
   }
 }
 
