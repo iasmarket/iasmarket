@@ -332,13 +332,102 @@
         .scroll-top.show { opacity: 1; transform: translateY(0); }
         .scroll-top:hover { background: #e0002e; }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 600px) {
-            .container { grid-template-columns: 1fr 1fr; gap: 12px; padding: 20px; }
-            .product img { height: 160px; }
+        /* ═══════════════════════════════════════════════════
+           RESPONSIVE — TABLET ≤ 1024px
+        ═══════════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                padding: 28px 4vw;
+            }
         }
-        @media (max-width: 400px) {
-            .container { grid-template-columns: 1fr; }
+
+        /* ═══════════════════════════════════════════════════
+           RESPONSIVE — MOBILE ≤ 768px
+        ═══════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* NAV */
+            nav { height: 56px; padding: 0 4vw; }
+            .nav-logo { font-size: 1.1rem; }
+            .btn-home { padding: 7px 14px; font-size: 0.8rem; }
+
+            /* HERO */
+            .cat-hero { padding: 80px 4vw 36px; }
+            .cat-hero h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+            .cat-hero-sub { font-size: 0.92rem; }
+            .cat-stats { gap: 16px; }
+
+            /* SEARCH */
+            .search-wrap { padding: 16px 4vw; gap: 10px; }
+            .search-label { display: none; }
+            #searchInput { font-size: 0.85rem; padding: 11px 14px 11px 38px; }
+            .search-count { font-size: 0.75rem; }
+
+            /* PAGINATION */
+            .pagination-top, .pagination-bottom { padding-left: 4vw; padding-right: 4vw; }
+            .pagination a { padding: 8px 14px; font-size: 0.78rem; }
+            .pagination-label { display: none; }
+
+            /* PRODUCT GRID — 2 colonnes */
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 20px 4vw;
+            }
+
+            /* PRODUCT CARD */
+            .product { border-radius: 14px; }
+            .product img { height: 160px; padding: 10px; }
+            .product-body { padding: 10px 12px 14px; gap: 7px; }
+            .product p:first-of-type { font-size: 0.82rem; -webkit-line-clamp: 2; }
+            .product p { font-size: 0.8rem; }
+            .product p strong { font-size: 0.95rem; }
+            .product p[style*="color: red"],
+            .product p[style*="color:red"] { font-size: 0.72rem; padding: 3px 9px; }
+            .product .btn { font-size: 0.75rem; padding: 9px 12px; }
+            .product p[style*="background-color: #fff3cd"],
+            .product p[style*="background-color:#fff3cd"] { font-size: 0.75rem !important; padding: 7px 10px !important; }
+
+            /* FOOTER */
+            footer { padding: 36px 4vw 24px; }
+            .footer-top { flex-direction: column; gap: 14px; }
+            .footer-links { flex-wrap: wrap; gap: 14px; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
+            .amazon-badge { font-size: 0.72rem; }
+
+            /* SCROLL TOP */
+            .scroll-top { width: 40px; height: 40px; font-size: 1rem; bottom: 16px; right: 16px; }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           RESPONSIVE — SMALL MOBILE ≤ 480px
+        ═══════════════════════════════════════════════════ */
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 16px 3vw;
+            }
+            .product img { height: 140px; padding: 8px; }
+            .product-body { padding: 8px 10px 12px; gap: 6px; }
+            .product p:first-of-type { -webkit-line-clamp: 2; font-size: 0.78rem; }
+            .product .btn { font-size: 0.7rem; padding: 8px 10px; border-radius: 9px; }
+            .cat-hero h1 { font-size: clamp(1.6rem, 9vw, 2.2rem); }
+            .cat-eyebrow { font-size: 0.68rem; }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           RESPONSIVE — EXTRA SMALL ≤ 360px
+        ═══════════════════════════════════════════════════ */
+        @media (max-width: 360px) {
+            .container { grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; }
+            .product img { height: 120px; }
+            .product p[style*="color: red"],
+            .product p[style*="color:red"] { font-size: 0.65rem; }
+            nav { height: 52px; }
+            .cat-hero { padding: 72px 3vw 28px; }
         }
     </style>
 </head>
@@ -381,6 +470,866 @@
             <!-- PRODUCTS GRID -->
             <div class="container" id="productContainer">
             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product" id="B0G35HVDMC"><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/51HjBycabJL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Facetime Video Call App</strong></p><p style="color: red;"><strong>-60% OFF</strong></p><a href="https://www.amazon.com/dp/B0G35HVDMC?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+<div class="product" id="B0D3BGPGBR"><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1"><img src="https://m.media-amazon.com/images/I/71vDnr+JXiL._SL500_.png" alt="Product Image" style="max-width: 200px;"></a><p><strong>Bullet Army Rush Action: Merge Ammo Runs Challenge - Dodge Obstacles & Battle Bosses in Endless Runner Stacks Guns Game</strong></p><p style="color: red;"><strong>-33% OFF</strong></p><a href="https://www.amazon.com/dp/B0D3BGPGBR?tag=eloabder-20&linkCode=osi&th=1&psc=1" class="btn" style="display: inline-block; background: #FF9900; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">View Product on Amazon</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2210,7 +3159,7 @@
                             empty = document.createElement("div");
                             empty.id = "emptyState";
                             empty.className = "empty-state";
-                            empty.innerHTML = "<div class='icon'>🔍</div><p>No products matching <strong>" + filter + "</strong></p>";
+                            empty.innerHTML = "<div class='icon'>🔍</div><p>No products matching <strong>"" + filter + ""</strong></p>";
                             document.getElementById("productContainer").appendChild(empty);
                         }
                     } else if (empty) {
