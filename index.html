@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  // Forcer www.iasmarket.us — évite "Not secure" sur iasmarket.us (sans www)
+  if (location.hostname === 'iasmarket.us') {
+    location.replace('https://www.iasmarket.us' + location.pathname + location.search + location.hash);
+  }
+</script>
 <title>IaSmarKet.us — Smart Deals. Real Savings.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -769,7 +775,7 @@
     <div class="section-header fade-up">
       <div>
         <div class="section-eyebrow">Loaded Live</div>
-        <h2 class="section-title">Today's Top 🔟 Deals<br>by Category</h2>
+        <h2 class="section-title">Today's Top Deals<br>by Category</h2>
       </div>
     </div>
     <div id="progress-wrap"><div id="progress-inner"></div></div>
@@ -1046,7 +1052,7 @@ function renderPanel(repo, products, panelId) {
             ${p.price  ? `<div class="dyn-price">${escapeHTML(p.price)}</div>`   : ''}
             ${p.coupon ? `<div class="dyn-coupon">🎫 ${escapeHTML(p.coupon)}</div>` : ''}
             <a href="${escapeHTML(p.link)}" target="_blank" rel="noopener" class="dyn-link">
-              View Deal 
+              View Deal on Amazon
             </a>
           </div>
         </div>`).join('')}
