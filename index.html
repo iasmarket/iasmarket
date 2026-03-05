@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <script>
-  // Forcer www.iasmarket.us — évite "Not secure" sur iasmarket.us (sans www)
-  if (location.hostname === 'iasmarket.us') {
+  // Forcer www.iasmarket.us — seulement en production, jamais en local
+  if (location.hostname === 'iasmarket.us' && !location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) {
     location.replace('https://www.iasmarket.us' + location.pathname + location.search + location.hash);
   }
 </script>
@@ -950,8 +950,9 @@ let _allProductsCache = null;
 
 async function loadAllProducts() {
   if (_allProductsCache) return _allProductsCache;
+  // Sur file:// (ouverture locale), fetch ne fonctionne pas → retourner vide silencieusement
+  if (location.protocol === 'file:') return {};
   try {
-    // Chemin relatif → toujours même domaine, zéro CORS
     const res = await fetch('/all-products.json', { cache: 'no-cache' });
     if (!res.ok) return {};
     _allProductsCache = await res.json();
@@ -1138,7 +1139,11 @@ async function loadDeals() {
   }
 }
 
-loadDeals();
+// Lancer le chargement des deals — protégé contre les erreurs
+try { loadDeals(); } catch(e) {
+  document.getElementById('dynamic-results').innerHTML =
+    '<div class="cat-empty"><div class="ico">⚠️</div><p>Open this page on www.iasmarket.us to see live deals.</p></div>';
+}
 </script>
 <script>
 // ── NEWSLETTER (Google Sheets via Apps Script) ───────────────────────────────
