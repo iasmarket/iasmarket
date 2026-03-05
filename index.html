@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <title>IaSmarKet.us — Smart Deals. Real Savings.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -770,7 +769,7 @@
     <div class="section-header fade-up">
       <div>
         <div class="section-eyebrow">Loaded Live</div>
-        <h2 class="section-title">Today's Top Deals<br>by Category</h2>
+        <h2 class="section-title">Today's Top 🔟 Deals<br>by Category</h2>
       </div>
     </div>
     <div id="progress-wrap"><div id="progress-inner"></div></div>
@@ -945,9 +944,8 @@ let _allProductsCache = null;
 
 async function loadAllProducts() {
   if (_allProductsCache) return _allProductsCache;
-  // Sur file:// (ouverture locale), fetch ne fonctionne pas → retourner vide silencieusement
-  if (location.protocol === 'file:') return {};
   try {
+    // Chemin relatif → toujours même domaine, zéro CORS
     const res = await fetch('/all-products.json', { cache: 'no-cache' });
     if (!res.ok) return {};
     _allProductsCache = await res.json();
@@ -1048,7 +1046,7 @@ function renderPanel(repo, products, panelId) {
             ${p.price  ? `<div class="dyn-price">${escapeHTML(p.price)}</div>`   : ''}
             ${p.coupon ? `<div class="dyn-coupon">🎫 ${escapeHTML(p.coupon)}</div>` : ''}
             <a href="${escapeHTML(p.link)}" target="_blank" rel="noopener" class="dyn-link">
-              View Deal on Amazon
+              View Deal 
             </a>
           </div>
         </div>`).join('')}
@@ -1134,11 +1132,7 @@ async function loadDeals() {
   }
 }
 
-// Lancer le chargement des deals — protégé contre les erreurs
-try { loadDeals(); } catch(e) {
-  document.getElementById('dynamic-results').innerHTML =
-    '<div class="cat-empty"><div class="ico">⚠️</div><p>Open this page on www.iasmarket.us to see live deals.</p></div>';
-}
+loadDeals();
 </script>
 <script>
 // ── NEWSLETTER (Google Sheets via Apps Script) ───────────────────────────────
