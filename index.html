@@ -130,18 +130,15 @@
   .cat-section-title a { color: var(--text); text-decoration: none; transition: color 0.2s; }
   .cat-section-title a:hover { color: var(--hot); }
   .cat-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  /* ── TABS ── */
-  .cat-tabs-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
-  .cat-tab { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-family: "Syne",sans-serif; font-weight: 700; font-size: 0.78rem; padding: 8px 16px; border-radius: 100px; cursor: pointer; transition: all 0.2s; white-space: nowrap; user-select: none; }
+  /* ── FILTRE RAPIDE ── */
+  .cat-tabs-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+  .cat-tab { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-family: "Syne",sans-serif; font-weight: 700; font-size: 0.78rem; padding: 8px 16px; border-radius: 100px; cursor: pointer; transition: all 0.2s; white-space: nowrap; user-select: none; text-decoration: none; }
   .cat-tab:hover { border-color: rgba(255,45,85,0.4); color: var(--text); }
   .cat-tab.active { background: var(--hot); border-color: var(--hot); color: #fff; box-shadow: 0 4px 16px rgba(255,45,85,0.3); }
-  .cat-tab .tab-count { background: rgba(255,255,255,0.18); border-radius: 100px; padding: 1px 7px; font-size: 0.68rem; }
-  /* ── PANNEAUX ── */
-  .cat-panel { display: none; }
-  .cat-panel.active { display: block; animation: fadeIn 0.25s ease; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
-  .cat-panel-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
-  .cat-panel-title { font-family: "Syne",sans-serif; font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
+  /* ── SECTIONS PAR CATÉGORIE ── */
+  .cat-section { margin-bottom: 64px; scroll-margin-top: 90px; }
+  .cat-panel-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .cat-panel-title { font-family: "Syne",sans-serif; font-weight: 800; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
   .cat-panel-title a { color: var(--text); text-decoration: none; transition: color 0.2s; }
   .cat-panel-title a:hover { color: var(--hot); }
   .cat-panel-badge { background: rgba(255,45,85,0.1); border: 1px solid rgba(255,45,85,0.25); color: var(--hot); font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -438,6 +435,7 @@
     .cat-tab { font-size: 0.72rem; padding: 7px 12px; }
     .cat-panel-title { font-size: 1rem; }
     .cat-view-all { font-size: 0.75rem; padding: 7px 14px; }
+    .cat-section { margin-bottom: 48px; }
 
     /* FOOTER */
     footer { padding: 40px 4vw 24px; }
@@ -741,11 +739,13 @@
     <div class="section-header fade-up">
       <div>
         <div class="section-eyebrow">Loaded Live</div>
-        <h2 class="section-title">Today's Top 🔟 Deals<br>by Category</h2>
+        <h2 class="section-title">Top 10 Deals<br>per Category</h2>
       </div>
     </div>
     <div id="progress-wrap"><div id="progress-inner"></div></div>
+    <!-- Raccourcis rapides vers chaque catégorie -->
     <div id="cat-tabs" class="cat-tabs-wrap"></div>
+    <!-- Toutes les catégories affichées en cascade -->
     <div id="dynamic-results">
       <div style="color:var(--muted);text-align:center;padding:40px;font-size:1rem;">⏳ Loading live deals…</div>
     </div>
@@ -1017,81 +1017,90 @@ function renderPanel(repo, products, panelId) {
   </div>`;
 }
 
-// ── Système de tabs ───────────────────────────────────────────────────────────
-let activeTab = null;
-
-function switchTab(panelId, tabEl) {
-  // Désactiver tous les tabs et panneaux
-  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
-  // Activer le tab cliqué
-  tabEl.classList.add('active');
-  const panel = document.getElementById(panelId);
-  if (panel) panel.classList.add('active');
-  activeTab = panelId;
-  // Scroll léger vers la section
-  document.getElementById('dynamic-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+// ── Rendu d'une section catégorie (toujours visible) ─────────────────────────
+function renderSection(repo, products, sectionId) {
+  return `<div class="cat-section" id="${sectionId}">
+    <div class="cat-panel-header">
+      <div class="cat-panel-title">
+        <span>${repo.icon}</span>
+        <a href="${escapeHTML(repo.url)}" target="_blank" rel="noopener">${escapeHTML(repo.name)}</a>
+        <span class="cat-panel-badge">Top ${products.length}</span>
+      </div>
+      <a href="${escapeHTML(repo.url)}" target="_blank" rel="noopener" class="cat-view-all">
+        View all deals →
+      </a>
+    </div>
+    <div class="dynamic-product-grid">
+      ${products.map((p, i) => `
+        <div class="dyn-card">
+          <div class="dyn-img-wrap">
+            <a href="${escapeHTML(p.link)}" target="_blank" rel="noopener">
+              <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" loading="lazy">
+            </a>
+            ${p.discount ? `<div class="dyn-badge">-${p.discount}% OFF</div>` : ''}
+            <div class="dyn-rank">#${i + 1}</div>
+          </div>
+          <div class="dyn-body">
+            <div class="dyn-name">${escapeHTML(p.name)}</div>
+            ${p.price  ? `<div class="dyn-price">$${typeof p.price === 'number' ? p.price.toFixed(2) : p.price}</div>` : ''}
+            ${p.coupon ? `<div class="dyn-coupon">🎫 ${escapeHTML(p.coupon)}</div>` : ''}
+            <a href="${escapeHTML(p.link)}" target="_blank" rel="noopener" class="dyn-link">
+              View Deal →
+            </a>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
 }
 
 // ── Chargement principal ──────────────────────────────────────────────────────
 async function loadDeals() {
-  const tabsWrap    = document.getElementById('cat-tabs');
-  const panelsWrap  = document.getElementById('dynamic-results');
+  const tabsWrap      = document.getElementById('cat-tabs');
+  const resultsWrap   = document.getElementById('dynamic-results');
   const progressWrap  = document.getElementById('progress-wrap');
   const progressInner = document.getElementById('progress-inner');
 
   progressWrap.style.display = 'block';
-  tabsWrap.innerHTML = '';
-  panelsWrap.innerHTML = '';
+  tabsWrap.innerHTML    = '';
+  resultsWrap.innerHTML = '';
 
-  let firstActiveSet = false;
   let loaded = 0;
+  let hasAny = false;
 
-  // Charger toutes les catégories en parallèle (5 à la fois)
+  // Charger toutes les catégories (5 en parallèle)
   const BATCH = 5;
   for (let b = 0; b < repositories.length; b += BATCH) {
-    const batch = repositories.slice(b, b + BATCH);
-
-    // Lancer le batch en parallèle
+    const batch   = repositories.slice(b, b + BATCH);
     const results = await Promise.allSettled(batch.map(repo => fetchProducts(repo)));
 
     results.forEach((result, idx) => {
       const repo     = batch[idx];
-      const products = (result.status === 'fulfilled' ? result.value : []);
+      const products = result.status === 'fulfilled' ? result.value : [];
       loaded++;
       progressInner.style.width = Math.round(loaded / repositories.length * 100) + '%';
 
-      // Catégorie vide ou inaccessible → on n'affiche ni tab ni panneau
-      if (!products.length) return;
+      if (!products.length) return;   // catégorie vide → ignorée
+      hasAny = true;
 
-      const panelId = 'panel-' + repo.name.replace(/\W+/g, '-').toLowerCase();
+      const sectionId = 'sec-' + repo.key.toLowerCase();
 
-      // ── Créer le tab ───────────────────────────────────────────────────────
-      const tab = document.createElement('button');
-      tab.className = 'cat-tab';
-      tab.innerHTML = `${repo.icon} ${escapeHTML(repo.name)} <span class="tab-count">${products.length}</span>`;
-      tab.onclick = () => switchTab(panelId, tab);
-      tabsWrap.appendChild(tab);
+      // ── Raccourci rapide (lien ancre) ─────────────────────────────────────
+      const link = document.createElement('a');
+      link.className = 'cat-tab';
+      link.href      = '#' + sectionId;
+      link.innerHTML = `${repo.icon} ${escapeHTML(repo.name)}`;
+      tabsWrap.appendChild(link);
 
-      // ── Créer le panneau avec les 10 tops ────────────────────────────────
-      panelsWrap.insertAdjacentHTML('beforeend', renderPanel(repo, products, panelId));
-
-      // Activer le premier tab disponible
-      if (!firstActiveSet) {
-        firstActiveSet = true;
-        tab.classList.add('active');
-        document.getElementById(panelId).classList.add('active');
-        activeTab = panelId;
-      }
+      // ── Section complète avec le top 10 ───────────────────────────────────
+      resultsWrap.insertAdjacentHTML('beforeend', renderSection(repo, products, sectionId));
     });
   }
 
   progressWrap.style.display = 'none';
 
-  // Si aucune catégorie chargée
-  if (!firstActiveSet) {
-    panelsWrap.innerHTML = `<div class="cat-empty"><div class="ico">🔄</div>
-      <p>Loading deals... Make sure your category pages are published on iasmarket.us</p></div>`;
+  if (!hasAny) {
+    resultsWrap.innerHTML = `<div class="cat-empty"><div class="ico">🔄</div>
+      <p>No deals loaded yet — publish <code>all-products.json</code> to GitHub Pages.</p></div>`;
   }
 }
 
