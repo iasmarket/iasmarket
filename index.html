@@ -917,7 +917,7 @@ async function loadAllProducts() {
   if (_allProductsCache) return _allProductsCache;
   try {
     // Chemin relatif → toujours même domaine, zéro CORS
-    const res = await fetch('/all-products.json', { cache: 'no-cache' });
+    const res = await fetch('./all-products.json', { cache: 'no-cache' });
     if (!res.ok) return {};
     _allProductsCache = await res.json();
     return _allProductsCache;
